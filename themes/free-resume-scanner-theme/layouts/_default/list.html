@@ -1,0 +1,14 @@
+{{ define "main" }}  
+  {{ .Content }}  
+  {{ range .Pages.ByPublishDate.Reverse }}
+  <h3><b><a href="{{ .RelPermalink }}">{{ .Title }}</a></b></h3>
+      <b>{{ partial "date-and-tags.html" .}}</b>
+</br>
+      {{ .Summary }}
+      {{ if .Truncated }}
+      <div class="read-more-link">
+          <a href="{{ .RelPermalink }}">Read More…</a>
+      </div>
+      {{ end }}
+    {{ end }} 
+{{ end }}

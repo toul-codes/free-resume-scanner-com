@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  {{ partial "head.html" . }}
+    <body class="hg">
+      {{ partial "header.html" . }}
+        <main class="hg-main">
+            {{ block "main" . }}
+            {{ end }}
+        </main>
+        {{ partial "left-aside.html" . }}
+        {{ partial "right-aside.html" . }}
+        {{ partial "footer.html" . }}
+    </body>
+</html>
