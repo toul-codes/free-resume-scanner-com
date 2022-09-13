@@ -8,6 +8,6 @@ noComment: true
 
 # Tools
 
+Here you'll find other tools from the Free Resume Scanner Team
 
-## 1. Free Resume Scanner
 

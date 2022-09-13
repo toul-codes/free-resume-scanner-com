@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script type="text/javascript">
     function submitToAPI(e) {
       e.preventDefault();
@@ -13,7 +11,6 @@
       var r = $("#free-resume-scanner-resume-text-area").val();
       var jd = $("#free-resume-scanner-job-description-text-area").val();
       var data = {
-        woeid: name,
         resume: r,
         job_description: jd
       };
@@ -21,20 +18,28 @@
       console.log("datas", data.resume , data.job_description)
       $.ajax({
         type: "POST",
-        url: "https://c1q8m9q7fg.execute-api.us-west-2.amazonaws.com/stage",
+        url: "https://3dtn8ngzyi.execute-api.us-west-2.amazonaws.com/prod/review",
         crossDomain: "true",
         dataType: "json",
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function(response) {
-          $("#weather").html("<b>Forecast: </b>" + response.weather_state_name);
-          $("#min-temp").html("<b>Min temp: </b>" + response.min_temp.toFixed(1) + " °C");
-          $("#max-temp").html("<b>Max temp:  </b>" + response.max_temp.toFixed(1) + " °C");
-          $("#city").html("<b>City: </b>" + response.title);
+          $("#resume-has-linkedin-result").html(response.linked_in);
+          $("#resume-length-result").html(response.resume_length);
+          $("#resume-measurable").html(response.measurable);
+          $("#score").html("<b>Score: </b>" + response.score);
+          $("#job-description-skills").html("" + response.soft_skills + "," + response.hard_skills);
         }
       });
     }
   </script>
+  <style>
+    h2 {
+      text-align: center;
+      text-size: 1.875em;
+    }
+
+  </style>
 </head>
 <body>
 
@@ -50,22 +55,45 @@
     <span id="textarea1HelpBlock" class="form-text text-muted">Go to the Job Description, select all of it, copy, and paste it here</span>
   </div>
   <div class="form-group">
-    <button class="button is-medium is-success is-rounded" type="button" onClick="submitToAPI(event)" class="btn btn-lg" style="margin-top:20px;">Submit</button>
+    <button type="button" class="btn btn-warning btn-lg col" onClick="submitToAPI(event)" style="margin-top:20px;">Submit</button>
   </div>
 </form>
 
-
 <h2>Results</h2>
-<br />
-  <p id="weather"><b>Forecast: </b> </p>
-  <p id="min-temp"><b>Min temp: </b></p>
-  <p id="max-temp"><b>Max temp: </b></p>
-  <p id="city"><b>City: </b></p>
+<div class="table-responsive">
+<table class="table">
+  <thead class="table-dark">
+  <tr>
+    <th scope="col">Metric</th>
+    <th scope="col">Value</th>
+    <th scope="col">Suggestion</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Measurable</td>
+    <td id="resume-measurable"></td>
+    <td><a href="https://freeresumescanner.com/blog/2022/make-your-resume-pop-with-measurable-bullet-points">Make your Resume Pop with Measurable Bullet Points </a></td>
+  </tr>
+  <tr>
+    <td>Missing Keywords</td>
+    <td id="job-description-skills"></td>
+    <td><a href="https://freeresumescanner.com/blog/2022/get-into-a-recruiters-inbox-with-keywords">Get into a Recruiters Inbox with Keywords</a></td>
+  </tr>
+  <tr>
+    <td>Resume Length</td>
+    <td id="resume-length-result"></td>
+    <td><a href="https://freeresumescanner.com/blog/2022/dont-get-auto-rejected-keep-your-resume-between-500-1000-words">Don't get auto-rejected keep your Resume between 500-1000 words </a></td>
+  </tr>
+  <tr>
+    <td>Has LinkedIn</td>
+    <td id="resume-has-linkedin-result"></td>
+    <td><a href="https://freeresumescanner.com/blog/2022/use-linkedin-so-that-recruiters-can-dm-you">Use LinkedIn so that Recruiters can DM you</a></td>
+  </tr>
+  </tbody>
+</table>
+</div>
 
-<br />
-<br />
-<br />
-<br />
 </div>
 </body>
 </html>
