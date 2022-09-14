@@ -8,5 +8,5 @@ Keywords are the hidden secret to getting seen by Recruiters. As you apply to jo
 by Applicant Tracking Software, which uses a keyword filters to determine whether your resume comes up 
 in search results that the recruiters see. 
 
-So, add the keywords provide with your free resume scan, and you'll 
+So, add the keywords provided with your free resume scan, and you'll 
 drastically increase your chances of being read rather than left on seen.
