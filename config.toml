@@ -6,5 +6,5 @@ theme = "free-resume-scanner-theme"
 [taxonomies]
   tag = "tags"
 [params]
-  dateFormat = "Jan 2, 2006"
-  homeText = "You just made a Hugo blog from scratch."
+  dateFormat = "Jan 2, 2022"
+  homeText = "a new theme has been spotted!"
