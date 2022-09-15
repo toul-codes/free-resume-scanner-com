@@ -14,7 +14,6 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font: inherit;
-	font-size: 100%;
 	vertical-align: baseline;
 }
 article, aside, details, figcaption, figure,
@@ -125,6 +124,7 @@ p {
 .hg-left {
 	text-align:center;
 	background-color: #004643;
+	font-size: large;
 }
 .hg-right {
 	text-align: center;
@@ -136,14 +136,12 @@ p {
 	padding: 0;
 	border: 0;
 	font: inherit;
-	font-size: 100%;
 	vertical-align: baseline;
 	list-style-type: none;
 }
 
 .hg-left a {
 	font-weight: bolder;
-	font-size: bold;
 	color: #e16162;
 	text-decoration: none;
 }
